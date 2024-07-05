@@ -1,0 +1,11 @@
+# IDEs
+.vscode
+.idea
+# Python
+__pycache__
+venv
+.venv
+# Variables de entorno
+.env
+.env.local
+.dockerignore
