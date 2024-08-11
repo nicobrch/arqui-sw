@@ -6,15 +6,17 @@ def run_client(c: client.Client):
 
     while True:
         data = c.receive()
-        if type(data) != client.Message:
+        if type(data) != client.Response:
             raise ValueError('Error en la transaccion!')
 
         if data.key == "usr":
             usr = input(data.content)
-            c.send('login', f'usr-{usr}')
+            rq = client.Request('login', 'usr', usr)
+            c.send(rq)
         elif data.key == "pwd":
             pwd = input(data.content)
-            c.send('login', f'pwd-{pwd}')
+            rq = client.Request('login', 'pwd', pwd)
+            c.send(rq)
         else:
             print(data.content)
             break
@@ -22,5 +24,6 @@ def run_client(c: client.Client):
 if __name__ == '__main__':
     c = client.Client()
     c.connect()
-    c.send('login', 'login')
+    rq = client.Request('login', 'ini', '')
+    c.send(rq)
     run_client(c)
