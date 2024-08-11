@@ -21,6 +21,8 @@ def run_client(c: client.Client):
             print(data.content)
             break
 
+    c.close()
+
 if __name__ == '__main__':
     c = client.Client()
     c.connect()
