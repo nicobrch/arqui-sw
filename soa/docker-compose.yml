@@ -1,0 +1,17 @@
+name: "pysoa"
+
+services:
+  login:
+    container_name: login
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - SERVICE=login.py
+        - HOST=soabus
+    networks:
+      - soa
+
+networks:
+  soa:
+    external: true

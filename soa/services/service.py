@@ -1,3 +1,4 @@
+import os
 import socket
 from dataclasses import dataclass
 
@@ -41,7 +42,8 @@ class Service:
         if self.sock is None:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-        server_address = ('localhost', 5000)
+        host = os.getenv('HOST', 'localhost')
+        server_address = (host, 5000)
         print('starting up on {} port {}'.format(*server_address))
         try:
             self.sock.connect(server_address)
